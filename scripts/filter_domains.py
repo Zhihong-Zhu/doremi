@@ -14,12 +14,12 @@ import shutil
 from itertools import chain
 
 
-PILE_DOMAINS = ['ArXiv', 'BookCorpus2', 'Books3', 'DM Mathematics', 'Enron Emails', 'EuroParl', 'FreeLaw', 'Github', 'Gutenberg (PG-19)', 'HackerNews', 'NIH ExPorter', 'OpenSubtitles', 'OpenWebText2', 'PhilPapers', 'Pile-CC', 'PubMed Abstracts', 'PubMed Central', 'StackExchange', 'USPTO Backgrounds', 'Ubuntu IRC', 'Wikipedia (en)', 'YoutubeSubtitles']
+PILE_DOMAINS = ['class_', 'english_', 'exam_', 'generate_', 'qa_', 'tongyong_']
 
 DOMAIN_TO_IDX = {
     name: idx for idx, name in enumerate(PILE_DOMAINS)}
 
-PILE_SUBSETS = [f'0{i}' if i < 10 else str(i) for i in range(0, 30)]
+# PILE_SUBSETS = [f'0{i}' if i < 10 else str(i) for i in range(0, 30)]
 
 
 def pile_transform(tokenizer, max_length, seed=None):
@@ -52,7 +52,7 @@ def main():
     parser.add_argument('--output_dir', type=str, default='/path/to/output')
     parser.add_argument('--intermediate_dir', type=str, default='/path/to/intermediate')
     parser.add_argument('--domain', type=str, default='Books3')
-    parser.add_argument('--subset', type=str, default='01')
+    # parser.add_argument('--subset', type=str, default='01')
     parser.add_argument('--num_samples', type=int, default=102400000)
     parser.add_argument('--max_length', type=int, default=1024)
     parser.add_argument('--nproc', type=int, default=8)
@@ -62,13 +62,14 @@ def main():
     parser.add_argument('--seed', type=int, default=111)
     args = parser.parse_args()
 
-    args.domain = args.domain.replace('_', ' ')
+    # args.domain = args.domain.replace('_', ' ')
 
     # move from intermediate dir to output dir
-    if args.split == 'train':
-        output_dir = Path(args.output_dir) / args.split / args.domain / args.subset
-    else:
-        output_dir = Path(args.output_dir) / args.split / args.domain
+    output_dir = Path(args.output_dir) / args.split / args.domain
+    # if args.split == 'train':
+    #     output_dir = Path(args.output_dir) / args.split / args.domain / args.subset
+    # else:
+    #     output_dir = Path(args.output_dir) / args.split / args.domain
     if output_dir.exists():
         print("Already done, skipping")
         return
