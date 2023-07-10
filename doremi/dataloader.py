@@ -302,12 +302,12 @@ def get_data_collator(tokenizer, return_tensors='pt', do_padding=False):
 if __name__ == "__main__":
     # a short test
 
-    PILE_DOMAINS = ['ArXiv', 'BookCorpus2', 'Books3', 'DM Mathematics', 'Enron Emails', 'EuroParl', 'FreeLaw', 'Github', 'Gutenberg (PG-19)', 'HackerNews', 'NIH ExPorter', 'OpenSubtitles', 'OpenWebText2', 'PhilPapers', 'Pile-CC', 'PubMed Abstracts', 'PubMed Central', 'StackExchange', 'USPTO Backgrounds', 'Ubuntu IRC', 'Wikipedia (en)', 'YoutubeSubtitles']
+    PILE_DOMAINS = ['class_', 'english_', 'exam_', 'generate_', 'qa_', 'tongyong_']
 
     DOMAIN_TO_IDX = {
         name: idx for idx, name in enumerate(PILE_DOMAINS)}
 
-    PILE_SUBSETS = [f'0{i}' if i < 10 else str(i) for i in range(0, 30)]
+    # PILE_SUBSETS = [f'0{i}' if i < 10 else str(i) for i in range(0, 30)]
 
     domain_weights_dict = {domain: 1 for domain in PILE_DOMAINS}
     ds, domain_weights = get_preprocessed_mixed_dataset(
