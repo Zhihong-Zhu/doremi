@@ -65,7 +65,7 @@ def main():
     # args.domain = args.domain.replace('_', ' ')
 
     # move from intermediate dir to output dir
-    output_dir = Path(args.output_dir) / args.split / args.domain
+    output_dir = Path(args.output_dir) / args.domain
     # if args.split == 'train':
     #     output_dir = Path(args.output_dir) / args.split / args.domain / args.subset
     # else:
@@ -75,12 +75,13 @@ def main():
         return
 
     pile_dir = Path(args.pile_path_dir)
-    if args.split == 'train':
-        data_files = [str(pile_dir / f"{args.subset}.jsonl.zst")]
-    elif args.split == 'validation':
-        data_files = [str(pile_dir / "val.jsonl.zst")]
-    else:
-        data_files = [str(pile_dir / f"test.jsonl.zst")]
+    # data_files = [str(pile_dir / )]
+    # if args.split == 'train':
+    #     data_files = [str(pile_dir / f"{args.subset}.jsonl.zst")]
+    # elif args.split == 'validation':
+    #     data_files = [str(pile_dir / "val.jsonl.zst")]
+    # else:
+    #     data_files = [str(pile_dir / f"test.jsonl.zst")]
 
 
     # load dataset
